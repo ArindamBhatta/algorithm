@@ -1,26 +1,35 @@
-function canJumpBruteForce(nums: number[]): boolean {
+function canJumpBruteForce(nums: number[]) {
+
+//Every Recursion call index argument call with new value actually index //1 2 3 4;
     function canReach(index: number): boolean {
-        // Base case: if we reach the last index, return true
+
         if (index >= nums.length - 1) {
             return true;
         }
 
-        // Get the maximum jump length from the current position
-        let maxJump = nums[index];
-
-        // Try every possible jump from 1 to maxJump
-        for (let jump = 1; jump <= maxJump; jump++) {
-            if (canReach(index + jump)) {
-                return true; // If any path leads to the last index, return true
+        let maxJump = nums[index]; // 2 3 1 1;
+      
+        
+       
+        
+    //iterate every index
+        for (let jump = 1; jump <= maxJump; jump++) {    
+           console.log(index + jump);
+           
+            
+            if (canReach(index + jump)) { 
+                console.log('true');
+                
+                return true
             }
+            
         }
 
-        return false; // If no path leads to the last index, return false
+        return false; 
     }
-
-    return canReach(0); // Start from index 0
+    return canReach(0); // child function call from hear
 }
 
 // Example usage
 console.log(canJumpBruteForce([2, 3, 1, 1, 4])); // Output: true
-console.log(canJumpBruteForce([3, 2, 1, 0, 4])); // Output: false
+
