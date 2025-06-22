@@ -1,14 +1,24 @@
-function printNo(n:number) {
-    console.log(n); // 4, 3, 2, 1; 
-    
+#include <iostream>
+using namespace std;
+
+void printNo(int n) {
+    cout << n << endl;  // Pre-order: prints on the way down
+
     if (n == 1) {
-        console.log(n);
+        cout << n << endl;  // Base case, prints again when n == 1
         return;
     }
 
-    printNo(n - 1); // pauses execution at this point and starts the recursive call.
-    console.log(n); //After returning from recursion, 1, 2, 3, 4;
+    printNo(n - 1);  // Recursive call
+
+    cout << n << endl;  // Post-order: prints on the way back up
 }
+
+int main() {
+    printNo(4);
+    return 0;
+}
+
 
 /* 
 Step-by-Step Execution:

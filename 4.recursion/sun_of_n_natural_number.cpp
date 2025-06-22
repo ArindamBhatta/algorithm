@@ -1,9 +1,19 @@
-function sumOfNumber(n:number):number {
+#include <iostream>
+using namespace std;
+
+int sumOfNumber(int n) {
     if (n == 1) {
         return n;
     }
     return n + sumOfNumber(n - 1);
 }
+
+int main() {
+    int result = sumOfNumber(5);  // Example: 1 + 2 + 3 + 4 + 5 = 15
+    cout << "Sum: " << result << endl;
+    return 0;
+}
+
 
 
 /* 
