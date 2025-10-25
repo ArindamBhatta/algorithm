@@ -1,7 +1,0 @@
-function selectionSort() {
-    
-}
-
-function bubbleShot() {
-    
-}
