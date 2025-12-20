@@ -1,38 +1,24 @@
 function groupAnagrams(strs: string[]): string[][] {
-    const result: string[][] = [];
-    const visited: boolean[] = new Array(strs.length).fill(false);
+    const map = new Map<string, string[]>();
 
-    function isAnagram(a: string, b: string): boolean {
-        if (a.length !== b.length) return false;
+    for (const word of strs) {
+        // MAP: build frequency signature
+        const freq = new Array(26).fill(0);
 
-        const count = new Array(26).fill(0);
-
-        for (let ch of a) {
-            count[ch.charCodeAt(0) - 97]++;
+        for (const ch of word) {
+            freq[ch.charCodeAt(0) - 97]++;
         }
 
-        for (let ch of b) {
-            count[ch.charCodeAt(0) - 97]--;
+        // Convert frequency array into a string key
+        const key = freq.join('#');
+
+        // REDUCE: group by key
+        if (!map.has(key)) {
+            map.set(key, []);
         }
 
-        return count.every(c => c === 0);
+        map.get(key)!.push(word);
     }
 
-    for (let i = 0; i < strs.length; i++) {
-        if (visited[i]) continue;
-
-        const group: string[] = [strs[i]];
-        visited[i] = true;
-
-        for (let j = i + 1; j < strs.length; j++) {
-            if (!visited[j] && isAnagram(strs[i], strs[j])) {
-                group.push(strs[j]);
-                visited[j] = true;
-            }
-        }
-
-        result.push(group);
-    }
-
-    return result;
+    return Array.from(map.values());
 }
